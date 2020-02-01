@@ -15,4 +15,12 @@ public class MapInteractables : MonoBehaviour
     {
         
     }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        //have it turn off the "highlighted" animation here
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        //have it tur on the "highlighted" animation here
+    }
 }

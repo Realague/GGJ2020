@@ -5,7 +5,9 @@ using UnityEngine;
 public class IsometricPlayer : MonoBehaviour
 {
     public float moveSpeed;
-    Rigidbody2D rb;
+    private MapInteractables interactableObj = null;
+    private Rigidbody2D rb;
+    private bool canInteract = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,11 +28,33 @@ public class IsometricPlayer : MonoBehaviour
         rb.MovePosition(newPos);
     }
 
+    void Update()
+    {
+        if(interactableObj != null)
+        {
+            if(canInteract && Input.GetKey(KeyCode.E))
+                Debug.Log(interactableObj.gameObject.name);
+        }
+
+    }
+
     void OnTriggerEnter2D(Collider2D col)
+    {
+        //Debug.Log("here");
+        if(col.gameObject.CompareTag("Option"))
+        {
+            //Debug.Log("here");
+            canInteract = true;
+            interactableObj = col.gameObject.GetComponent<MapInteractables>();
+        }
+    }
+    
+    void OnTriggerExit2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Option"))
         {
-            
+            canInteract = false;
+            interactableObj = null;
         }
     }
 }
