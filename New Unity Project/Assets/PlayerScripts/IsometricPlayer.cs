@@ -102,14 +102,14 @@ public class IsometricPlayer : MonoBehaviour
 
     private void isMoving()
     {
-        if(rb.velocity < 0.01)
+        if(rb.velocity.magnitude < 0.01)
         {
-            notMoving == true;
+            notMoving = true;
             MoveDirectionFacing = MoveDirection.nothing;
         }
         else
     
-            notMoving == false;
+            notMoving = false;
             StaticDirectionFacing = StaticDirection.nothing;
     }
 
