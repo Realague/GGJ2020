@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IsometricPlayer : MonoBehaviour
 {
+    public List<Rect> mapBorders;
     public float moveSpeed;
     private MapInteractables interactableObj = null;
     private Rigidbody2D rb;
@@ -52,7 +53,14 @@ public class IsometricPlayer : MonoBehaviour
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement = inputVector * moveSpeed;
         Vector2 newPos = currentPosition + movement * Time.fixedDeltaTime;
-        rb.MovePosition(newPos);
+        mapBorders.ForEach(delegate (Rect mapBorder)
+        {
+            if (mapBorder.Contains(newPos))
+            {
+                rb.MovePosition(newPos);
+                return;
+            }
+        });
     }
 
     void Update()
