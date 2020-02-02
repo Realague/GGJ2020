@@ -53,6 +53,7 @@ public class IsometricPlayer : MonoBehaviour
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement = inputVector * moveSpeed;
         Vector2 newPos = currentPosition + movement * Time.fixedDeltaTime;
+        
         mapBorders.ForEach(delegate (Rect mapBorder)
         {
             if (mapBorder.Contains(newPos))
