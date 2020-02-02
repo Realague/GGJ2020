@@ -18,6 +18,8 @@ public class IsometricPlayer : MonoBehaviour
     public GameObject cityLayer;
     public GameObject fenceLayer;
     public GameObject villageLayer;
+    private float timeMax = 30f;
+    private float copy = 0f;
     private enum MoveDirection
     {
         N,
@@ -66,6 +68,7 @@ public class IsometricPlayer : MonoBehaviour
 
     void Update()
     {
+        //copy -= Time.deltaTime;
         if(interactableObj != null && interactableObj.name == "Tree")
         {
             if(canInteract && Input.GetKeyDown(KeyCode.E))
