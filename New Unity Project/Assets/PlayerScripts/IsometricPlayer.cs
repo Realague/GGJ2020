@@ -6,10 +6,18 @@ public class IsometricPlayer : MonoBehaviour
 {
     public List<Rect> mapBorders;
     public float moveSpeed;
-    private MapInteractables interactableObj = null;
+    [SerializeField] private GameObject interactableObj = null;
+    public Tree tree;
+    public Cow cow;
+    public Building building;
     private Rigidbody2D rb;
     private bool canInteract = false;
     private bool notMoving;
+
+    public GameObject treeLayer;
+    public GameObject cityLayer;
+    public GameObject fenceLayer;
+    public GameObject villageLayer;
     private enum MoveDirection
     {
         N,
@@ -53,23 +61,56 @@ public class IsometricPlayer : MonoBehaviour
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement = inputVector * moveSpeed;
         Vector2 newPos = currentPosition + movement * Time.fixedDeltaTime;
-        
-        mapBorders.ForEach(delegate (Rect mapBorder)
-        {
-            if (mapBorder.Contains(newPos))
-            {
-                rb.MovePosition(newPos);
-                return;
-            }
-        });
+        rb.MovePosition(newPos);
     }
 
     void Update()
     {
-        if(interactableObj != null)
+        if(interactableObj != null && interactableObj.name == "Tree")
         {
-            if(canInteract && Input.GetKey(KeyCode.E))
-                ExecuteEvent(interactableObj.gameObject.name);
+            if(canInteract && Input.GetKeyDown(KeyCode.E))
+            {
+                if(interactableObj.name == "Tree")
+                {
+                    Debug.Log("tree");
+                    tree.gameObject.SetActive(false);
+                    treeLayer.gameObject.SetActive(true);
+                    cow.gameObject.SetActive(true);
+                }
+            }
+        }
+        else if(interactableObj != null && interactableObj.name == "Cow")
+        {
+            
+            if(canInteract && Input.GetKeyDown(KeyCode.E))
+            {
+                
+                if(interactableObj.name == "Cow")
+                {
+                    Debug.Log("cow");
+                    cow.gameObject.SetActive(false);
+                    fenceLayer.gameObject.SetActive(true);
+                    villageLayer.gameObject.SetActive(true);
+                    building.gameObject.SetActive(true);
+                }
+            }
+        }
+        else if(interactableObj != null && interactableObj.name == "Building")
+        {
+            Debug.Log("here");
+            if(canInteract && Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("Here2");
+                if(interactableObj.name == "Building")
+                {
+                    Debug.Log("building");
+                    building.gameObject.SetActive(false);
+                    cityLayer.gameObject.SetActive(true);
+                    villageLayer.gameObject.SetActive(false);
+                    fenceLayer.gameObject.SetActive(false);
+                    treeLayer.gameObject.SetActive(false);
+                }
+            }
         }
         
         ChooseDirection();
@@ -83,13 +124,35 @@ public class IsometricPlayer : MonoBehaviour
         {
             //Debug.Log("here");
             canInteract = true;
-            interactableObj = col.gameObject.GetComponent<MapInteractables>();
+            interactableObj = col.gameObject;
+        }
+        else if(col.gameObject.CompareTag("Cow"))
+        {
+            //Debug.Log("here");
+            canInteract = true;
+            interactableObj = col.gameObject;
+        }
+        else if(col.gameObject.CompareTag("Building"))
+        {
+            //Debug.Log("here");
+            canInteract = true;
+            interactableObj = col.gameObject;
         }
     }
     
     void OnTriggerExit2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Option"))
+        {
+            canInteract = false;
+            interactableObj = null;
+        }
+        else if(col.gameObject.CompareTag("Cow"))
+        {
+            canInteract = false;
+            interactableObj = null;
+        }
+        if(col.gameObject.CompareTag("Building"))
         {
             canInteract = false;
             interactableObj = null;
