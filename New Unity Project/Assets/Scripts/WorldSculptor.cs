@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 public class WorldSculptor : MonoBehaviour
 {
     public Tilemap tilemap;
-    public Tile yellowTile;
+    public TileBase greenTile;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +22,32 @@ public class WorldSculptor : MonoBehaviour
         
     }
 
-    void ChangeTile(Vector3Int coordinate, Tile newTile)
+    TileBase ChooseTile(string name)
     {
+        switch (name)
+        {
+            case "green":
+                return greenTile;
+                break;
+            default:
+                Debug.Log("Invalid Tile Chosen");
+                break;
+        }
+        return null;
+    }
+
+    void ChangeTile(Vector3Int coordinate, string name)
+    {
+        var newTile = ChooseTile(name);
+
         tilemap.SetTile(coordinate, newTile);
     }
 
-    void DeleteTile(Vector3Int coordinate, Tile newTile)
+    void DeleteTile(Vector3Int coordinate, string name)
     {
-        tilemap.SetTile(coordinate, null);
+    }
+
+    void ChangeTiles(Vector3Int coordinates, string name)
+    {
     }
 }
