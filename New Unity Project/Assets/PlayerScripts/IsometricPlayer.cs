@@ -12,7 +12,6 @@ public class IsometricPlayer : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -33,7 +32,7 @@ public class IsometricPlayer : MonoBehaviour
         if(interactableObj != null)
         {
             if(canInteract && Input.GetKey(KeyCode.E))
-                Debug.Log(interactableObj.gameObject.name);
+                ExecuteEvent(interactableObj.gameObject.name);
         }
 
     }
@@ -56,5 +55,10 @@ public class IsometricPlayer : MonoBehaviour
             canInteract = false;
             interactableObj = null;
         }
+    }
+
+    private void ExecuteEvent(string name)
+    {
+        //connects to specific fuctions depending on which object has been interacted with
     }
 }
