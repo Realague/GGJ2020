@@ -1,40 +1,88 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EventManager : MonoBehaviour
 {
+    public WorldSculptor worldSculptor;
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    void activateTrees()
+    {
+        GameObject.Find("Grid/Trees").GetComponent<TilemapRenderer>().enabled = true;
         
     }
 
-
-    void ExecuteEvent(string eventName) // user calls event A over B
+    void removeTrees()
     {
-        switch (eventName)
-        {
-            case "event1":
-                event1();
-                break;
-            default:
-                Debug.Log("Invalid Event Called");
-                break;
-
-        }
+        GameObject.Find("Grid/Trees").GetComponent<TilemapRenderer>().enabled = false; 
     }
 
-
-    void event1()
+    void activatePigs()
     {
-        // worldSculptor.create(0, 0, 0, trees);
+        GameObject.Find("Grid/Pigs").GetComponent<TilemapRenderer>().enabled = true;
+
     }
 
-    void StartingEvent()
+    void removePigs()
     {
+        GameObject.Find("Grid/Pigs").GetComponent<TilemapRenderer>().enabled = false;
 
     }
+
+    void activateCities()
+    {
+        GameObject.Find("Grid/Cities").GetComponent<TilemapRenderer>().enabled = true;
+
+    }
+
+    void removeCities()
+    {
+        GameObject.Find("Grid/Cities").GetComponent<TilemapRenderer>().enabled = false;
+
+    }
+
+    void activateVillages()
+    {
+        GameObject.Find("Grid/Villages").GetComponent<TilemapRenderer>().enabled = true;
+
+    }
+
+    void removeVillages()
+    {
+        GameObject.Find("Grid/Villages").GetComponent<TilemapRenderer>().enabled = false;
+
+    }
+
+    void activateRobots()
+    {
+        GameObject.Find("Grid/Robots").GetComponent<TilemapRenderer>().enabled = true;
+
+    }
+
+    void removeRobots()
+    {
+        GameObject.Find("Grid/Robots").GetComponent<TilemapRenderer>().enabled = false;
+
+    }
+
+    void activateHumans()
+    {
+        GameObject.Find("Grid/Humans").GetComponent<TilemapRenderer>().enabled = true;
+
+    }
+
+    void removeHumans()
+    {
+        GameObject.Find("Grid/Humans").GetComponent<TilemapRenderer>().enabled = false;
+
+    }
+
 
     // Update is called once per frame
     void Update()
