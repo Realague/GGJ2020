@@ -113,7 +113,7 @@ public class IsometricPlayer : MonoBehaviour
             StaticDirectionFacing = StaticDirection.nothing;
     }
 
-    ChooseDirection()
+    private void ChooseDirection()
     {
         if(rb.velocity.x < 0 && rb.velocity.y == 0)
         {
