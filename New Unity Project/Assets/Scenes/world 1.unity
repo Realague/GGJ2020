@@ -34466,7 +34466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &832476368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35140,6 +35140,11 @@ PrefabInstance:
       propertyPath: stateEnding
       value: 
       objectReference: {fileID: 1075318862}
+    - target: {fileID: 7770334842615887851, guid: 3ea74688d6585e54ba141bf596466418,
+        type: 3}
+      propertyPath: gameOverScreen
+      value: 
+      objectReference: {fileID: 832476367}
     - target: {fileID: 7770334842615887854, guid: 3ea74688d6585e54ba141bf596466418,
         type: 3}
       propertyPath: m_Offset.x
