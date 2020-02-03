@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
+
 public class EventManager : MonoBehaviour
 {
-    public WorldSculptor worldSculptor;
     // Start is called before the first frame update
     void Start()
     {
+    }
 
+
+    void activateState2()
+    {
+        GameObject.Find("ActivateState2").SetActive(true);
     }
 
     void activateTrees()

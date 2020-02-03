@@ -18,7 +18,16 @@ public class IsometricPlayer : MonoBehaviour
     public GameObject cityLayer;
     public GameObject fenceLayer;
     public GameObject villageLayer;
-    private float timeMax = 30f;
+
+    public GameObject state2;
+    public GameObject state3;
+    public GameObject state4;
+    public GameObject stateEnding;
+    private bool flag = false;
+    public GameObject gameOverScreen;
+
+    private float timeMax = 20f;
+    private float screenTimer = 40f;
     private float copy = 0f;
     private enum MoveDirection
     {
@@ -50,6 +59,7 @@ public class IsometricPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        copy = timeMax;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -68,51 +78,78 @@ public class IsometricPlayer : MonoBehaviour
 
     void Update()
     {
-        //copy -= Time.deltaTime;
-        if(interactableObj != null && interactableObj.name == "Tree")
+        copy -= Time.deltaTime;
+        if (copy <= 0)
         {
-            if(canInteract && Input.GetKeyDown(KeyCode.E))
+            if (interactableObj != null && interactableObj.name == "Tree")
             {
-                if(interactableObj.name == "Tree")
+                if (canInteract && Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("tree");
-                    tree.gameObject.SetActive(false);
-                    treeLayer.gameObject.SetActive(true);
-                    cow.gameObject.SetActive(true);
+                    if (interactableObj.name == "Tree")
+                    {
+                        Debug.Log("tree");
+                        tree.gameObject.SetActive(false);
+                        if (copy <= 0)
+                        {
+                            treeLayer.gameObject.SetActive(true);
+                            cow.gameObject.SetActive(true);
+                            state2.SetActive(true);
+                            copy = timeMax;
+                        }
+
+                    }
                 }
             }
-        }
-        else if(interactableObj != null && interactableObj.name == "Cow")
-        {
-            
-            if(canInteract && Input.GetKeyDown(KeyCode.E))
+            else if (interactableObj != null && interactableObj.name == "Cow")
             {
-                
-                if(interactableObj.name == "Cow")
+
+                if (canInteract && Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("cow");
-                    cow.gameObject.SetActive(false);
-                    fenceLayer.gameObject.SetActive(true);
-                    villageLayer.gameObject.SetActive(true);
-                    building.gameObject.SetActive(true);
+
+                    if (interactableObj.name == "Cow")
+                    {
+                        Debug.Log("cow");
+                        cow.gameObject.SetActive(false);
+                        if (copy <= 0)
+                        { 
+                            fenceLayer.gameObject.SetActive(true);
+                            villageLayer.gameObject.SetActive(true);
+                            building.gameObject.SetActive(true);
+                            state3.SetActive(true);
+                            copy = timeMax;
+                        }
+
+                    }
                 }
             }
-        }
-        else if(interactableObj != null && interactableObj.name == "Building")
-        {
-            Debug.Log("here");
-            if(canInteract && Input.GetKeyDown(KeyCode.E))
+            else if (interactableObj != null && interactableObj.name == "Building")
             {
-                Debug.Log("Here2");
-                if(interactableObj.name == "Building")
+                Debug.Log("here");
+                if (canInteract && Input.GetKeyDown(KeyCode.E))
                 {
-                    Debug.Log("building");
-                    building.gameObject.SetActive(false);
-                    cityLayer.gameObject.SetActive(true);
-                    villageLayer.gameObject.SetActive(false);
-                    fenceLayer.gameObject.SetActive(false);
-                    treeLayer.gameObject.SetActive(false);
+                    Debug.Log("Here2");
+                    if (interactableObj.name == "Building")
+                    {
+                        Debug.Log("building");
+                        building.gameObject.SetActive(false);
+                        if (copy <= 0)
+                        {
+                            cityLayer.gameObject.SetActive(true);
+                            villageLayer.gameObject.SetActive(false);
+                            fenceLayer.gameObject.SetActive(false);
+                            treeLayer.gameObject.SetActive(false);
+                            state4.SetActive(true);
+                            flag = true;
+                        }
+                    }
                 }
+            }
+
+            if(flag)
+            {
+                screenTimer -= Time.deltaTime;
+                if (screenTimer <= 0)
+                    gameOverScreen.gameObject.SetActive(true);
             }
         }
         

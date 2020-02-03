@@ -44,3 +44,36 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 2794654405
+    locked: 0
+  - name: Grass
+    uniqueID: 265400311
+    locked: 0
+  - name: Trees
+    uniqueID: 2295450105
+    locked: 0
+  - name: Pigs
+    uniqueID: 3234376105
+    locked: 0
+  - name: Cows
+    uniqueID: 3980750687
+    locked: 0
+  - name: Cities
+    uniqueID: 1749344725
+    locked: 0
+  - name: Villages
+    uniqueID: 3176582199
+    locked: 0
+  - name: Robots
+    uniqueID: 3840409799
+    locked: 0
+  - name: Humans
+    uniqueID: 1049052989
+    locked: 0
+  - name: Player
+    uniqueID: 1204213745
+    locked: 0
+  - name: UI
+    uniqueID: 2932837807
+    locked: 0

@@ -5,6 +5,7 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 /New Unity Project/Assets/StoreAssets/*
+/New Unity Project/Assets/Wwise/*
 
 # Visual Studio 2015 cache directory
 .vs/
@@ -35,3 +36,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 New Unity Project/Assets/Palette/Core Palette.prefab
+New Unity Project/ProjectSettings/TagManager.asset
